@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Message For You</title>
+    <style>
+        body {
+            background-color: #faf7f2; 
+            color: #4a5343; 
+            font-family: 'Georgia', serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 20px;
+            overflow: hidden;
+        }
+
+        .envelope-container {
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+        }
+
+        .letter-box {
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border: 1px solid #e1dad2;
+            min-height: 250px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        p {
+            font-size: 1.25rem;
+            line-height: 1.8;
+            margin: 0;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        p.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .author-tag {
+            font-style: italic;
+            margin-top: 25px;
+            color: #8fa084;
+            font-weight: bold;
+        }
+
+        button {
+            margin-top: 30px;
+            background-color: #8fa084; 
+            color: white;
+            border: none;
+            padding: 12px 32px;
+            font-size: 1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-family: 'Georgia', serif;
+            box-shadow: 0 4px 10px rgba(143, 160, 132, 0.3);
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        button:hover {
+            background-color: #798c6e;
+            transform: scale(1.03);
+        }
+    </style>
+</head>
+<body>
+
+<div class="envelope-container">
+    <div class="letter-box">
+        <p id="letter-text" class="active">Click the button below to read a special message... ✨</p>
+        <div id="author" class="author-tag" style="display:none;">- Softbyelle</div>
+    </div>
+    <button id="next-btn" onclick="nextLines()">Begin</button>
+</div>
+
+<script>
+    const lines = [
+        "Happy advance birthday, Gerlie. 🌸",
+        "There are so many things I wish I knew how to say properly, but words have never been enough whenever it comes to you.",
+        "Still, I hope this letter somehow reaches the parts of your heart that often stay hidden from the world.",
+        "I may never fully understand everything you carry inside you; the thoughts you keep quiet, the pain you try to hide, the battles you fight alone...",
+        "But please know that I am always willing to listen. You never have to explain yourself perfectly for me to stay.",
+        "And if the way I love has ever hurt you, I am truly sorry. None of it was ever intentional.",
+        "Sometimes I care too deeply that I fail to realize love should also be gentle.",
+        "But even in my mistakes, my intentions for you have always been sincere.",
+        "I don't think you realize how much your presence means to me.",
+        "In crowded places, my eyes still unconsciously search for you. In random moments, you cross my mind without warning.",
+        "Somehow, being around you feels like finding peace in the middle of chaos. You became someone I cherish quietly but deeply.",
+        "Thank you for every conversation, every laugh, every moment you stayed even when life felt heavy.",
+        "Thank you for existing in my life in the softest way possible.",
+        "As your birthday comes closer, I hope life becomes kinder to you (everyday!). I hope your heart heals from things you never talk about.",
+        "I hope you find the kind of happiness that stays... (grabe kaau ka eme bah) pero bitaw jokes aside I hope the calm kind, the genuine kind. ✨",
+        "And no matter what happens, I hope you remember this.. there will always be someone here who cares about you more than words can explain.",
+        "Advance happy birthday, Gerlie. You deserve all the beautiful things this world still has to offer. 💖"
+    ];
+
+    let currentIdx = -1;
+    const textElement = document.getElementById('letter-text');
+    const buttonElement = document.getElementById('next-btn');
+    const authorElement = document.getElementById('author');
+
+    function nextLines() {
+        if (currentIdx === -1) {
+            buttonElement.innerText = "Next ✨";
+        }
+
+        currentIdx++;
+
+        if (currentIdx < lines.length) {
+            textElement.classList.remove('active');
+            setTimeout(() => {
+                textElement.innerText = lines[currentIdx];
+                textElement.classList.add('active');
+            }, 400);
+        } else {
+            textElement.classList.remove('active');
+            setTimeout(() => {
+                textElement.innerText = "🌸 Happy Birthday! 🌸";
+                textElement.style.fontSize = "2rem";
+                textElement.classList.add('active');
+                authorElement.style.display = "block"; 
+                buttonElement.style.display = "none";  
+            }, 400);
+        }
+    }
+</script>
+
+</body>
+</html>
